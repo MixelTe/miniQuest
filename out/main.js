@@ -72,8 +72,10 @@ function Answer(text, img, onClick) {
 }
 function preloadImages() {
     quest.flat().forEach(answer => {
-        const img = new Image();
-        img.src = answer.img;
-        img.onload = () => console.log(`Image loaded: ${answer.img}`);
+        const link = document.createElement("link");
+        link.rel = "preload";
+        link.href = answer.img;
+        link.as = "image";
+        document.head.appendChild(link);
     });
 }
